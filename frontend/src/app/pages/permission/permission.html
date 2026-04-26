@@ -1,0 +1,27 @@
+<div class="card">
+  <h2>Permissions</h2>
+
+  <p *ngIf="!userId || !teamId">
+    Select user and team first
+  </p>
+
+  <p *ngIf="loading">Loading permissions...</p>
+
+  <p *ngIf="error" style="color:red">
+    {{ error }}
+  </p>
+
+  <!-- 🔥 MAIN FIX -->
+  <div *ngIf="permissions && permissions.length > 0">
+    <div
+      *ngFor="let p of permissions"
+      class="permission-tag"
+    >
+      {{ p }}
+    </div>
+  </div>
+
+  <p *ngIf="permissions && permissions.length === 0 && userId && teamId && !loading">
+    No permissions assigned
+  </p>
+</div>

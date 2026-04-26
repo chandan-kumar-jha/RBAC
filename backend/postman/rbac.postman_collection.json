@@ -1,0 +1,142 @@
+{
+"info": {
+"name": "RBAC System API",
+"_postman_id": "rbac-collection-001",
+"description": "RBAC Backend API Collection",
+"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+},
+"variable": [
+{ "key": "baseUrl", "value": "http://localhost:5000" },
+{ "key": "token", "value": "" },
+{ "key": "userId", "value": "" },
+{ "key": "teamId", "value": "" },
+{ "key": "roleId", "value": "" }
+],
+"item": [
+{
+"name": "Auth - Login",
+"request": {
+"method": "POST",
+"header": [{ "key": "Content-Type", "value": "application/json" }],
+"url": "{{baseUrl}}/api/auth/login",
+"body": {
+"mode": "raw",
+"raw": "{\n  "email": "[test@mail.com](mailto:test@mail.com)"\n}"
+}
+}
+},
+{
+"name": "Create User",
+"request": {
+"method": "POST",
+"header": [{ "key": "Content-Type", "value": "application/json" }],
+"url": "{{baseUrl}}/api/users",
+"body": {
+"mode": "raw",
+"raw": "{\n  "name": "Chandan",\n  "email": "[test@mail.com](mailto:test@mail.com)"\n}"
+}
+}
+},
+{
+"name": "Get Users",
+"request": {
+"method": "GET",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" }
+],
+"url": "{{baseUrl}}/api/users"
+}
+},
+{
+"name": "Create Permission",
+"request": {
+"method": "POST",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" },
+{ "key": "Content-Type", "value": "application/json" }
+],
+"url": "{{baseUrl}}/api/permissions",
+"body": {
+"mode": "raw",
+"raw": "{\n  "name": "CREATE_ROLE"\n}"
+}
+}
+},
+{
+"name": "Get Permissions",
+"request": {
+"method": "GET",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" }
+],
+"url": "{{baseUrl}}/api/permissions"
+}
+},
+{
+"name": "Create Team",
+"request": {
+"method": "POST",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" },
+{ "key": "Content-Type", "value": "application/json" }
+],
+"url": "{{baseUrl}}/api/teams",
+"body": {
+"mode": "raw",
+"raw": "{\n  "name": "Team Alpha"\n}"
+}
+}
+},
+{
+"name": "Get Teams",
+"request": {
+"method": "GET",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" }
+],
+"url": "{{baseUrl}}/api/teams"
+}
+},
+{
+"name": "Create Role",
+"request": {
+"method": "POST",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" },
+{ "key": "Content-Type", "value": "application/json" }
+],
+"url": "{{baseUrl}}/api/roles",
+"body": {
+"mode": "raw",
+"raw": "{\n  "name": "ADMIN",\n  "permissions": ["{{permissionId1}}", "{{permissionId2}}"]\n}"
+}
+}
+},
+{
+"name": "Assign Role",
+"request": {
+"method": "POST",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" },
+{ "key": "x-team-id", "value": "{{teamId}}" },
+{ "key": "Content-Type", "value": "application/json" }
+],
+"url": "{{baseUrl}}/api/membership/assign-role",
+"body": {
+"mode": "raw",
+"raw": "{\n  "userId": "{{userId}}",\n  "teamId": "{{teamId}}",\n  "roleId": "{{roleId}}"\n}"
+}
+}
+},
+{
+"name": "Get User Permissions",
+"request": {
+"method": "GET",
+"header": [
+{ "key": "Authorization", "value": "Bearer {{token}}" }
+],
+"url": "{{baseUrl}}/api/permissions/user/{{userId}}/team/{{teamId}}"
+}
+}
+]
+}

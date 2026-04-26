@@ -1,0 +1,15 @@
+<div class="card">
+  <h2>Select Team</h2>
+
+  <p *ngIf="loading">Loading teams...</p>
+  <p *ngIf="error" style="color:red">{{ error }}</p>
+
+  <div
+    *ngFor="let team of teams"
+    (click)="selectTeam(team)"
+    class="list-item"
+    [class.selected]="team._id === selectedTeamId"
+  >
+    {{ team.name }}
+  </div>
+</div>

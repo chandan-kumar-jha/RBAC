@@ -1,0 +1,21 @@
+<div class="card">
+  <h2>Select User</h2>
+
+  <input
+    [(ngModel)]="search"
+    (input)="filter()"
+    placeholder="Search by name or email"
+  />
+
+  <p *ngIf="loading">Loading users...</p>
+  <p *ngIf="error" style="color:red">{{ error }}</p>
+
+  <div
+    *ngFor="let user of filtered"
+    (click)="selectUser(user)"
+    class="list-item"
+    [class.selected]="user._id === selectedUserId"
+  >
+    {{ user.name }} ({{ user.email }})
+  </div>
+</div>

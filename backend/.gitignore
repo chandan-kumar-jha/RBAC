@@ -1,0 +1,23 @@
+# ===== BACKEND (Node/Express/TypeScript) =====
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+logs/
+*.log
+npm-debug.log*
+.DS_Store
+coverage/
+*.tsbuildinfo
+
+# ===== FRONTEND (Angular) =====
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/*.env.*
+!frontend/.env.example
+frontend/coverage/
+frontend/*.log
