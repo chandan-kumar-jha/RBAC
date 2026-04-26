@@ -13,7 +13,7 @@ interface ApiResponse<T> {
   providedIn: 'root',
 })
 export class Api {
-   private baseUrl = 'http://localhost:5000/api';
+   private baseUrl = '/api';
 
   constructor(private http: HttpClient) {}
 
